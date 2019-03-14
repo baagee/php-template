@@ -13,7 +13,11 @@ $file = 'user/login.html';
 \BaAGee\Template\View::init([
     'sourceViewPath'  => getcwd() . '/view',
     'compileViewPath' => getcwd() . '/compile',
-    'isDebug'=>false
+    'isDebug'         => false,
+    'tagMap'          => [
+        // 自定义模板标签 正则表达式=>替换的内容
+        '/abc/' => 'ABC'
+    ]
 ]);
 
 // $html = \BaAGee\Template\View::render($file, ['title' => 'userLogin']);

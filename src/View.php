@@ -43,8 +43,11 @@ class View implements ViewInterface
     {
         if (self::$isInit === false) {
             $config                 = self::checkConfig($config);
-            self::$config['tagMap'] = include_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'View', 'tagsMap.php']);
             self::$config           = array_merge(self::$config, $config);
+            self::$config['tagMap'] = include_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'View', 'tagsMap.php']);
+            if (!empty($config['tagMap'])) {
+                self::$config['tagMap'] = array_merge(self::$config['tagMap'], $config['tagMap']);
+            }
             call_user_func(self::$config['viewParser'] . '::init', self::$config['tagMap']);
             self::$isInit = true;
         }
@@ -92,6 +95,8 @@ class View implements ViewInterface
         $source  = self::getSourceFilePath($source);
         if (is_file($source)) {
             if (self::$config['isDebug'] || !is_file($compile) || filemtime($source) > filemtime($compile)) {
+                //view目录上次访问的时间大于当前模板
+                // fileatime(self::$config['sourceViewPath']) > filemtime($compile)
                 self::templateCompile($source, $compile);
             }
             extract($data, EXTR_SKIP);
