@@ -73,6 +73,11 @@ class View implements ViewInterface
         } else {
             $config['compileViewPath'] = rtrim($config['compileViewPath'], DIRECTORY_SEPARATOR);
         }
+        if (!empty($config['tagMap'])) {
+            if (!is_array($config['tagMap'])) {
+                throw new \Exception('配置tagMap值不是数组结构');
+            }
+        }
         return $config;
     }
 
