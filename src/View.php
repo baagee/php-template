@@ -8,6 +8,7 @@
 
 namespace BaAGee\Template;
 
+use BaAGee\Template\View\ParserBase;
 use BaAGee\Template\View\ProhibitNewClone;
 use BaAGee\Template\View\ViewInterface;
 use BaAGee\Template\View\ViewParser;
@@ -28,10 +29,13 @@ class View implements ViewInterface
      * @var array
      */
     protected static $config = [
-        'tagMap'          => [],
+        // 是否开发模式
         'isDebug'         => true,
+        // 模板文件基本目录
         'sourceViewPath'  => '',
+        // 编译后的模板文件目录
         'compileViewPath' => '',
+        // 模板解析类
         'viewParser'      => ViewParser::class
     ];
 
@@ -42,13 +46,11 @@ class View implements ViewInterface
     public static function init(array $config = [])
     {
         if (self::$isInit === false) {
-            $config                 = self::checkConfig($config);
-            self::$config           = array_merge(self::$config, $config);
-            self::$config['tagMap'] = include_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'View', 'tagsMap.php']);
-            if (!empty($config['tagMap'])) {
-                self::$config['tagMap'] = array_merge(self::$config['tagMap'], $config['tagMap']);
-            }
-            call_user_func(self::$config['viewParser'] . '::init', self::$config['tagMap']);
+            $config   = self::checkConfig($config);
+            $myTagMap = $config['tagMap'];
+            unset($config['tagMap']);
+            self::$config = array_merge(self::$config, $config);
+            call_user_func(self::$config['viewParser'] . '::init', $myTagMap);
             self::$isInit = true;
         }
     }
@@ -73,10 +75,17 @@ class View implements ViewInterface
         } else {
             $config['compileViewPath'] = rtrim($config['compileViewPath'], DIRECTORY_SEPARATOR);
         }
+        if (isset($config['viewParser']) && !empty($config['viewParser'])) {
+            if (!is_subclass_of($config['viewParser'], ParserBase::class)) {
+                throw new \Exception($config['viewParser'] . '没有继承' . ParserBase::class);
+            }
+        }
         if (!empty($config['tagMap'])) {
             if (!is_array($config['tagMap'])) {
                 throw new \Exception('配置tagMap值不是数组结构');
             }
+        } else {
+            $config['tagMap'] = [];
         }
         return $config;
     }

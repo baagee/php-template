@@ -11,11 +11,22 @@ namespace BaAGee\Template\View;
 use BaAGee\Template\View;
 
 /**
+ * 内置的模板解析类
  * Class ViewParser
  * @package BaAGee\Template\View
  */
 class ViewParser extends ParserBase
 {
+    /**
+     * @param array $tagMap
+     */
+    public static function init(array $tagMap=[])
+    {
+        // 直接读取内置tagMap
+        self::$tagMap = include_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'tagsMap.php']);
+        parent::init($tagMap);
+    }
+
     /**
      * @param $htmlStr
      * @return string

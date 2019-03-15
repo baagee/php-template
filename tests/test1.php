@@ -13,15 +13,15 @@ $file = 'user/login.html';
 \BaAGee\Template\View::init([
     'sourceViewPath'  => getcwd() . '/view',
     'compileViewPath' => getcwd() . '/compile',
-    'isDebug'         => false,
+    'isDebug'         => true,
     'tagMap'          => [
         // 自定义模板标签 正则表达式=>替换的内容
         '/abc/' => 'ABC'
     ]
 ]);
 
-// $html = \BaAGee\Template\View::render($file, ['title' => 'userLogin']);
-// echo $html;
+$html = \BaAGee\Template\View::render($file, ['title' => 'userLogin']);
+echo $html;
 $s1 = microtime(true);
 \BaAGee\Template\View::display($file, ['title' => 'userLogin']);
 echo (microtime(true) - $s1) . PHP_EOL;
