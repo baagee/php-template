@@ -8,10 +8,10 @@
 
 namespace BaAGee\Template;
 
-use BaAGee\Template\View\ParserBase;
-use BaAGee\Template\View\ProhibitNewClone;
-use BaAGee\Template\View\ViewInterface;
-use BaAGee\Template\View\ViewParser;
+use BaAGee\Template\Base\ParserBase;
+use BaAGee\Template\Base\ProhibitNewClone;
+use BaAGee\Template\Base\ViewInterface;
+use BaAGee\Template\Parser\ViewParser;
 
 /**
  * Class View

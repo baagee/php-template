@@ -6,7 +6,7 @@
  * Time: 下午5:26
  */
 
-namespace BaAGee\Template\View;
+namespace BaAGee\Template\Base;
 
 /**
  * 视图解析base

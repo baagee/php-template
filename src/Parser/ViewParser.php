@@ -6,8 +6,9 @@
  * Time: 下午4:10
  */
 
-namespace BaAGee\Template\View;
+namespace BaAGee\Template\Parser;
 
+use BaAGee\Template\Base\ParserBase;
 use BaAGee\Template\View;
 
 /**
@@ -20,7 +21,7 @@ class ViewParser extends ParserBase
     /**
      * @param array $tagMap
      */
-    public static function init(array $tagMap=[])
+    public static function init(array $tagMap = [])
     {
         // 直接读取内置tagMap
         self::$tagMap = include_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'tagsMap.php']);

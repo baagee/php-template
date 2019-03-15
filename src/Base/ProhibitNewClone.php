@@ -6,7 +6,7 @@
  * Time: 下午2:08
  */
 
-namespace BaAGee\Template\View;
+namespace BaAGee\Template\Base;
 trait ProhibitNewClone
 {
     // 禁止

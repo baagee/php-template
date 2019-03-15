@@ -6,7 +6,7 @@
  * Time: 下午5:14
  */
 
-namespace BaAGee\Template\View;
+namespace BaAGee\Template\Base;
 
 interface ViewInterface
 {
