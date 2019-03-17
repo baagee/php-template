@@ -8,7 +8,7 @@
 
 namespace BaAGee\Template\Parser;
 
-use BaAGee\Template\Base\ParserBase;
+use BaAGee\Template\Base\ParserAbstract;
 use BaAGee\Template\View;
 
 /**
@@ -16,7 +16,7 @@ use BaAGee\Template\View;
  * Class ViewParser
  * @package BaAGee\Template\View
  */
-class ViewParser extends ParserBase
+class ViewParser extends ParserAbstract
 {
     /**
      * @param array $tagMap

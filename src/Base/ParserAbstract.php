@@ -13,7 +13,7 @@ namespace BaAGee\Template\Base;
  * Class ParserBase
  * @package BaAGee\Template\View
  */
-abstract class ParserBase
+abstract class ParserAbstract
 {
     use ProhibitNewClone;
 

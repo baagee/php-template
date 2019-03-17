@@ -8,7 +8,7 @@
 
 namespace BaAGee\Template;
 
-use BaAGee\Template\Base\ParserBase;
+use BaAGee\Template\Base\ParserAbstract;
 use BaAGee\Template\Base\ProhibitNewClone;
 use BaAGee\Template\Base\ViewInterface;
 use BaAGee\Template\Parser\ViewParser;
@@ -76,8 +76,8 @@ class View implements ViewInterface
             $config['compileViewPath'] = rtrim($config['compileViewPath'], DIRECTORY_SEPARATOR);
         }
         if (isset($config['viewParser']) && !empty($config['viewParser'])) {
-            if (!is_subclass_of($config['viewParser'], ParserBase::class)) {
-                throw new \Exception($config['viewParser'] . '没有继承' . ParserBase::class);
+            if (!is_subclass_of($config['viewParser'], ParserAbstract::class)) {
+                throw new \Exception($config['viewParser'] . '没有继承' . ParserAbstract::class);
             }
         }
         if (!empty($config['tagMap'])) {
