@@ -20,10 +20,19 @@ $file = 'user/login.html';
     ]
 ]);
 
-$html = \BaAGee\Template\View::render($file, ['title' => 'userLogin']);
+$data=[
+    'title' => 'userLogin',
+    'info'=>[
+        'name'=>'小明',
+        'age'=>12,
+        'sex'=>'男'
+    ],
+    'time'=>time()
+];
+$html = \BaAGee\Template\View::render($file, $data);
 echo $html;
 $s1 = microtime(true);
-\BaAGee\Template\View::display($file, ['title' => 'userLogin']);
+\BaAGee\Template\View::display($file, $data);
 echo (microtime(true) - $s1) . PHP_EOL;
 
 echo 'over';
