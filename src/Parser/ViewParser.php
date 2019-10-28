@@ -42,6 +42,7 @@ class ViewParser extends ParserAbstract
         preg_match('/{{layout\s+(.+?)}}/', $htmlStr, $match);
         if (!empty($match[1])) {
             // 获取布局文件内容
+            $match[1]    = trim($match[1], '\'"');
             $layout_html = file_get_contents(View::getSourceFilePath($match[1]));
             // 检测子页面使用了父页面的哪些块 获取所有坑
             preg_match_all('/{{hole\s+(.+?)}}/', $layout_html, $holes);
@@ -67,6 +68,7 @@ class ViewParser extends ParserAbstract
             preg_match_all('/{{include\s+(.+?)}}/', $htmlStr, $includes);
             if (!empty($includes[1])) {
                 foreach ($includes[1] as $k => $include) {
+                    $include      = trim($include, '\'"');
                     $include_html = file_get_contents(View::getSourceFilePath($include));
                     $htmlStr      = str_replace($includes[0][$k], self::parse($include_html), $htmlStr);
                 }

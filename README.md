@@ -79,18 +79,18 @@ interface ViewInterface
 ### 引用一个模板文件
 在模板中如果需要引用其它模板文件可以使用以下的方法，路径从View下级开始写，被引入的模板里也可以引入其他模板，多层次嵌套
 ```html
-{{include /common/header.html}} 
+{{include '/common/header.tpl'}} 
 <div class="am-panel am-panel-default">
     <div class="am-panel-bd">
         <form class="am-form-inline" role="form">
 ....
         </ul>
-{{include common/footer.html}}
+{{include 'common/footer.tpl'}}
 ```
 
 ### layout布局
 可以多层次嵌套布局，比如article控制器的模板，使用叫做main1的布局，而main1又使用了main2的布局...
-#### 父模板挖坑 baseLayout.html
+#### 父模板挖坑 baseLayout.tpl
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -114,10 +114,10 @@ interface ViewInterface
 </body>
 </html>
 ```
-#### 子模板继承父模板填坑。mainLayout.html
+#### 子模板继承父模板填坑。mainLayout.tpl
 ```html 
 <!--使用baseLayout 布局，路径从View下级开始写-->
-{{layout /common/baseLayout.html}}
+{{layout '/common/baseLayout.tpl'}}
 <!--填坑 header-->
 {{fill header}}
     <!--填父亲一个坑 为儿子挖两个坑-->
@@ -128,8 +128,8 @@ interface ViewInterface
 <!--填坑 content-->
 {{fill content}}
     <!--引入公共的top 和sidebar-->
-    {{include common/top.html}}
-    {{include common/sidebar.html}}
+    {{include 'common/top.tpl'}}
+    {{include 'common/sidebar.tpl'}}
 
     <div class="tpl-content-wrapper">
         <div class="container-fluid am-cf">
@@ -154,7 +154,7 @@ interface ViewInterface
 #### 孙模板  具体的action对应的模板
 ```html
 <!--使用布局-->
-{{layout common/mainLayout.html}}
+{{layout 'common/mainLayout.tpl'}}
 
 <!--填坑 header-js-->
 {{fill header-js}}

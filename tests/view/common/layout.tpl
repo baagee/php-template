@@ -7,6 +7,6 @@
 </head>
 <body>
 {{hole body}}
-    <p>abc</p>
+<p>abc</p>
 </body>
 </html>

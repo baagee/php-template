@@ -8,7 +8,7 @@
 
 include_once __DIR__ . '/../vendor/autoload.php';
 
-$file = 'user/login.html';
+$file = 'user/login.tpl';
 
 \BaAGee\Template\View::init([
     'sourceViewPath'  => getcwd() . '/view',
