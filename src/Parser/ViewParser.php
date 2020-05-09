@@ -24,7 +24,7 @@ class ViewParser extends ParserAbstract
     public static function init(array $tagMap = [])
     {
         // 直接读取内置tagMap
-        self::$tagMap = include_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'tagsMap.php']);
+        self::$tagMap = require implode(DIRECTORY_SEPARATOR, [__DIR__, 'tagsMap.php']);
         parent::init($tagMap);
     }
 
@@ -42,7 +42,7 @@ class ViewParser extends ParserAbstract
         preg_match('/{{layout\s+(.+?)}}/', $htmlStr, $match);
         if (!empty($match[1])) {
             // 获取布局文件内容
-            $match[1]    = trim($match[1], '\'"');
+            $match[1] = trim($match[1], '\'"');
             $layout_html = file_get_contents(View::getSourceFilePath($match[1]));
             // 检测子页面使用了父页面的哪些块 获取所有坑
             preg_match_all('/{{hole\s+(.+?)}}/', $layout_html, $holes);
@@ -68,13 +68,13 @@ class ViewParser extends ParserAbstract
             preg_match_all('/{{include\s+(.+?)}}/', $htmlStr, $includes);
             if (!empty($includes[1])) {
                 foreach ($includes[1] as $k => $include) {
-                    $include      = trim($include, '\'"');
+                    $include = trim($include, '\'"');
                     $include_html = file_get_contents(View::getSourceFilePath($include));
-                    $htmlStr      = str_replace($includes[0][$k], self::parse($include_html), $htmlStr);
+                    $htmlStr = str_replace($includes[0][$k], self::parse($include_html), $htmlStr);
                 }
             }
             // 没有引用布局 退出递归
-            $pattern     = array_keys(self::$tagMap);
+            $pattern = array_keys(self::$tagMap);
             $replacement = array_values(self::$tagMap);
             return preg_replace($pattern, $replacement, $htmlStr);
         }
