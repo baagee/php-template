@@ -29,6 +29,7 @@ $data=[
     ],
     'time'=>time()
 ];
+define('APP_Name','app_nameee');
 $html = \BaAGee\Template\View::render($file, $data);
 echo $html;
 $s1 = microtime(true);

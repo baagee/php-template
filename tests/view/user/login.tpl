@@ -20,5 +20,11 @@
     {{loop $info $k $v}}
         <li>{{$k}}=>{{$v}}</li>
     {{/loop}}
+
+    {{loop $info $k $v}}
+        <li>{{$k}}=>{{$v}}</li>
+    {{pool}}
+
 </ul>
+{{APP_Name}}
 {{end body}}

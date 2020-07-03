@@ -11,10 +11,12 @@ return [
     '/{{else}}/'                                                   => '<?php } else { ?>',
     '/{{else ?if\s+(.+?)}}/'                                       => '<?php } else if($1) { ?>',
     '/{{\/if}}/'                                                   => '<?php } ?>',
+    '/{{fi}}/'                                                     => '<?php } ?>',
     '/{{loop\s+(\S+)\s+(\S+)}}/'                                   => '<?php if(is_array($1)) { foreach($1 as $2) { ?>',
     '/{{loop\s+(\S+)\s+(\S+)\s+(\S+)}}/'                           => '<?php if(is_array($1)) { foreach($1 as $2 => $3) { ?>',
     '/{{\/loop}}/'                                                 => '<?php } } ?>',
+    '/{{pool}}/'                                                   => '<?php } } ?>',
     '/{{(\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)}}/'           => '<?php echo $1;?>',
     '/{{(\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\[\]\'\"\$]*)}}/' => '<?php echo $1;?>',
-    '/{{([A-Z_\x7f-\xff][A-Z0-9_\x7f-\xff]*)}}/s'                  => '<?php echo $1;?>',
+    '/{{([A-Z_\x7f-\xff][A-Z0-9_a-z\x7f-\xff]*)}}/s'               => '<?php echo $1;?>',
 ];
