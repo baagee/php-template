@@ -26,7 +26,7 @@ interface ViewInterface
 <li class="am-active"><a href="javascript:;">{{$p}}</a></li>
 {{else}}
 <li><a href="{{$pp['url']}}">{{$p}}</a></li>
-{{/if}}
+{{/if}}或者是{{fi}}
 ```
 
 #### if elseif 
@@ -37,7 +37,7 @@ interface ViewInterface
 <li><a href="{{$pp['url']}}">{{$p}}</a></li>
 {{else}}
 <li><a href="">{{$p}}</a></li>
-{{/if}}
+{{fi}}
 ```
 
 ### 循环语句
@@ -67,7 +67,7 @@ interface ViewInterface
         <b>跑车简介：</b>{{$item['rere']['description']}}<br>
     </div>
 </div>
-{{/loop}}
+{{/loop}}或者{{pool}}
 ```
 
 ### 一行php语句
